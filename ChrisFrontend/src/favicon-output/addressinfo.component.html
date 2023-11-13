@@ -1,0 +1,137 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div *ngif="addys.length === 0">
+  <div class="create-address-container">
+    <div class="create-address-field">
+      <label for="newStreet">Street</label>
+      <input type="text" id="newStreet" [(ngmodel)]="newAddress.street">
+    </div>
+    <div class="create-address-field">
+      <label for="newCity">City</label>
+      <input type="text" id="newCity" [(ngmodel)]="newAddress.city">
+    </div>
+    <div class="create-address-field">
+      <label for="newState">State</label>
+      <input type="text" id="newState" [(ngmodel)]="newAddress.state">
+    </div>
+    <div class="create-address-field">
+      <label for="newCountry">Country</label>
+      <input type="text" id="newCountry" [(ngmodel)]="newAddress.country">
+    </div>
+    <div class="create-address-field">
+      <label for="newETC">ETC</label>
+      <input type="text" id="newETC" [(ngmodel)]="newAddress.etc">
+    </div>
+    <div class="create-address-field">
+      <label for="newZipCode">Zip Code</label>
+      <input type="text" id="newZipCode" [(ngmodel)]="newAddress.zipcode">
+    </div>
+    <button (click)="createAddress()">Create Address</button>
+  </div>
+</div>
+<div *ngif="addys.length === 1">
+  <div *ngfor="let address of addys">
+    <div class="address-container">
+      <div class="address-label">Main Address</div>
+      <div class="address-field">
+        <label for="street{{ address.addyid }}">Street</label>
+        <input type="text" id="street{{ address.addyid }}" [(ngmodel)]="address.street">
+      </div>
+      <div class="address-field">
+        <label for="city{{ address.addyid }}">City</label>
+        <input type="text" id="city{{ address.addyid }}" [(ngmodel)]="address.city">
+      </div>
+      <div class="address-field">
+        <label for="state{{ address.addyid }}">State</label>
+        <input type="text" id="state{{ address.addyid }}" [(ngmodel)]="address.state">
+      </div>
+      <div class="address-field">
+        <label for="country{{ address.addyid }}">Country</label>
+        <input type="text" id="country{{ address.addyid }}" [(ngmodel)]="address.country">
+      </div>
+      <div class="address-field">
+        <label for="etc{{ address.addyid }}">ETC</label>
+        <input type="text" id="etc{{ address.addyid }}" [(ngmodel)]="address.etc">
+      </div>
+      <div class="address-field">
+        <label for="zipcode{{ address.addyid }}">Zip Code</label>
+        <input type="text" id="zipcode{{ address.addyid }}" [(ngmodel)]="address.zipcode">
+      </div>
+    </div>
+  </div>
+  <button (click)="saveAddress(addys[0])">Save Main address</button>
+  <button *ngif="!showSecondaryAddress" (click)="showSecondaryAddress = true">
+    Add Secondary Address
+  </button>
+</div>
+<div *ngif="showSecondaryAddress">
+  <div class="address-container">
+    <div class="address-label">Secondary Address</div>
+    <!-- Display the additional address fields -->
+    <div class="address-field">
+      <label for="street2">Street</label>
+      <input type="text" id="street2" [(ngmodel)]="secondaryAddress.street">
+    </div>
+    <div class="address-field">
+      <label for="city2">City</label>
+      <input type="text" id="city2" [(ngmodel)]="secondaryAddress.city">
+    </div>
+    <div class="address-field">
+      <label for="state2">State</label>
+      <input type="text" id="state2" [(ngmodel)]="secondaryAddress.state">
+    </div>
+    <div class="address-field">
+      <label for="country2">Country</label>
+      <input type="text" id="country2" [(ngmodel)]="secondaryAddress.country">
+    </div>
+    <div class="address-field">
+      <label for="etc2">ETC</label>
+      <input type="text" id="etc2" [(ngmodel)]="secondaryAddress.etc">
+    </div>
+    <div class="address-field">
+      <label for="zipcode2">Zip Code</label>
+      <input type="text" id="zipcode2" [(ngmodel)]="secondaryAddress.zipcode">
+    </div>
+    <button (click)="createSecondary()">Save Address</button>
+  </div>
+</div>
+<div *ngif="addys.length === 2">
+    <div *ngfor="let address of addys; let i = index">
+      <div class="address-section">
+        <div class="address-label">{{ i === 0 ? 'MAIN' : 'Secondary' }}</div>
+        <div class="address-container">
+          <!-- Fields for address -->
+          <div class="address-field">
+            <label for="street{{ address.addyid }}">Street</label>
+            <input type="text" id="street{{ address.addyid }}" [(ngmodel)]="address.street">
+          </div>
+          <div class="address-field">
+            <label for="city{{ address.addyid }}">City</label>
+            <input type="text" id="city{{ address.addyid }}" [(ngmodel)]="address.city">
+          </div>
+          <div class="address-field">
+            <label for="state{{ address.addyid }}">State</label>
+            <input type="text" id="state{{ address.addyid }}" [(ngmodel)]="address.state">
+          </div>
+          <div class="address-field">
+            <label for="country{{ address.addyid }}">Country</label>
+            <input type="text" id="country{{ address.addyid }}" [(ngmodel)]="address.country">
+          </div>
+          <div class="address-field">
+            <label for="etc{{ address.addyid }}">ETC</label>
+            <input type="text" id="etc{{ address.addyid }}" [(ngmodel)]="address.etc">
+          </div>
+          <div class="address-field">
+            <label for="zipcode{{ address.addyid }}">Zip Code</label>
+            <input type="text" id="zipcode{{ address.addyid }}" [(ngmodel)]="address.zipcode">
+          </div>
+        </div>
+      </div>
+    </div>
+    <button (click)="saveAddresses()">Save Addresses</button>
+  </div>
+  </body></html>

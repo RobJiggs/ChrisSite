@@ -1,0 +1,119 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div class="container">
+  <div class="logo-container">
+    <!-- Logo goes here -->
+    <img class="logo" src="assets/Pictures/Logo.png" alt="Logo">
+  </div>
+</div>
+<div class="express-label">
+  <p>Express Checkout</p>
+</div>
+<div class="express-checkout-buttons">
+  <!-- Express checkout buttons go here -->
+  <button class="express-checkout">Express Checkout 1</button>
+  <button class="express-checkout">Express Checkout 2</button>
+  <button class="express-checkout">Express Checkout 3</button>
+</div>
+<div class="line-with-or">
+  <hr class="line">
+  <span class="or">OR</span>
+</div>
+<h6 class="contact-info">Contact Information</h6>
+<input class="email" type="text" [formcontrol]="emailControl" placeholder="Enter Email Address" id="emailField">
+<div class="shipping-address">
+  <label class="shipping-label">Shipping Address:</label>
+</div>
+<select class="country-dropdown" [(ngmodel)]="country" required="">
+  <!-- Dropdown menu for countries goes here -->
+  <option value="">Region or Country</option>
+  <option value="US">United States</option>
+</select>
+<div class="name">
+  <input class="fname" type="text" placeholder="First Name" [(ngmodel)]="firstName" required="">
+  <input class="lname" type="text" placeholder="Last Name" [(ngmodel)]="lastName" required="">
+</div>
+<input class="address" type="text" placeholder="Address" [(ngmodel)]="address" required="" id="addyfield">
+<input class="etc" type="text" placeholder="Apartment, Suite, etc. (optional)" [(ngmodel)]="etc">
+<div class="city-state-zip">
+  <input class="city" type="text" placeholder="City" [(ngmodel)]="city" required="">
+  <select class="state-dropdown" [(ngmodel)]="state" required="">
+    <!-- Dropdown menu for states goes here -->
+    <option value="">State</option>
+    <option>State 1</option>
+    <option>State 2</option>
+    <option>State 3</option>
+  </select>
+  <input class="zip" type="text" placeholder="Zip Code" [(ngmodel)]="zipCode" required="">
+</div>
+<div class="option-buttons">
+  <button class="return-to-cart" (click)="gotoCartPage()">Return to Cart</button>
+  <button class="continue-shipping" (click)="continueToShipping()">
+    Continue to Shipping
+  </button>
+  <div class="error-messages" id="error-container">
+    <div *ngif="emailControl.hasError('email') &amp;&amp; formSubmitted" class="error-message">
+      Please enter a valid email address
+    </div>
+    <div *ngif="emailControl.hasError('required') &amp;&amp; formSubmitted" class="error-message">
+    Please enter an email address
+  </div>
+    <div *ngif="isFieldInvalid('country')" class="error-message">
+      Please select a country
+    </div>
+    <div *ngif="isFieldInvalid('firstName')" class="error-message">
+      Please enter your first name
+    </div>
+    <div *ngif="isFieldInvalid('lastName')" class="error-message">
+      Please enter your last name
+    </div>
+    <div *ngif="isFieldInvalid('address')" class="error-message">
+      Please enter your address
+    </div>
+    <div *ngif="isFieldInvalid('city')" class="error-message">
+      Please enter your city
+    </div>
+    <div *ngif="isFieldInvalid('state')" class="error-message">
+      Please select a state
+    </div>
+    <div *ngif="isFieldInvalid('zipCode')" class="error-message">
+      Please enter a valid zip code
+    </div>
+  </div>
+</div>
+<div class="shipping-info">
+  <div class="cart-items-container" *ngif="cartItems.length > 0">
+    <ul>
+      <li *ngfor="let cartItem of cartItems">
+        <div class="item-details">
+          <img class="item-image" [src]="sanitizeImageUrl(cartItem.itemPic)">
+          <div class="item-info">
+            <p class="item-name">{{ cartItem.itemname }}</p>
+          </div>
+          <p class="item-price">
+            ${{ cartItem.price }} X {{ cartItem.quantity }}
+          </p>
+        </div>
+        <p class="item-subtotal">
+          ${{ cartItem.price * cartItem.quantity | number : "1.2-2" }}
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="cart-total-container" *ngif="cartItems.length > 0">
+    <div class="cart-total">
+      <p>Subtotal: {{ calculateTotalPrice() | number : "1.2-2" }}</p>
+      <p>Shipping: {{ calculateShipping() | number : "1.2-2" }}</p>
+      <p>Tax: {{ calculateTax() | number : "1.2-2" }}</p>
+      <p class="post-total">
+        Total:
+        {{ calculatePostTotal() | number : "1.2-2" }}
+      </p>
+    </div>
+  </div>
+</div>
+</body></html>

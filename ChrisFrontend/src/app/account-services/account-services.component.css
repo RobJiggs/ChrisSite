@@ -1,0 +1,75 @@
+.big-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    color: #BC9B11;
+    margin: 0 auto;
+    max-width: 400px;
+    max-height: fit-content;
+    border: 2px solid #BC9B11;
+  }
+
+ 
+  .inactive-button {
+    background-color: #BC9B11;
+    color: #000000;
+    border: none;
+  }
+  
+  .active-button {
+    background-color: #000000;
+    color: #BC9B11;
+    /*border: 4px solid #e6b333
+    /* Add any other styles you want for the active button */
+  }
+  h2 {
+    margin-top: 60px; /* Adjust the margin value as per your preference */
+  }
+  .login-button{
+    width: 200px;
+   
+
+
+  }
+  .create-account{
+    width: 200px;
+   
+  }
+
+  .input-field {
+    background-color: #525250; /* Set the desired background color for the input fields */
+    /* Add any other styles you want for the input fields */
+}
+.create-account-submit-button{
+
+    margin-top: 10px;
+    background-color: transparent;
+    color: #BC9B11; 
+    margin-left: 70px;
+    width: 100px;
+
+
+}
+.login-submit-button{
+
+
+  margin-top: 10px;
+  background-color: transparent;
+  color: #BC9B11; 
+  margin-left: 70px;
+  width: 100px;
+
+}
+
+.submit-button{
+
+
+  margin-top: 10px;
+  background-color: transparent;
+  color: #BC9B11; 
+  margin-left: 70px;
+  width: 100px;
+
+}

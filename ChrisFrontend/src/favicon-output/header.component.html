@@ -1,0 +1,104 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div outsideclick="" (outsideclick)="closeMenus()">
+  <header>
+    <nav class="navbar">
+      <div class="navbar-left" (click)="toggleMenu()">
+        <div class="menu-icon">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+      <div class="navbar-center">
+        <div class="logobox">
+          <a href="/">
+            <img class="logo" src="assets/Pictures/Logo.png" alt="Logo">
+          </a>
+        </div>
+      </div>
+      <div class="navbar-right">
+        <div class="top-icons">
+          <div class="search-icon" (click)="toggleSearchBar()">
+            <img class="searchpic" src="assets\Pictures\search.png" alt="Search">
+          </div>
+          <div class="cart-icon" (click)="toggleCartMenu()" #cartmenubutton="">
+            <img class="cartpic" src="assets/Pictures/Bag.png" alt="Cart">
+          </div>
+        </div>
+      </div>
+      <button class="logout-button" *ngif="isLoggedIn" (click)="logout()">
+        Logout
+      </button>
+    </nav>
+    <div class="search-bar" [class.open]="isSearchBarOpen" #searchbar="">
+      <div class="search-bar-content">
+        <input type="text" placeholder="Search">
+        <button class="search-icon" (click)="searchMethod()">🔍</button>
+        <button class="close-search" (click)="toggleSearchBar()">Close</button>
+      </div>
+    </div>
+    <div class="cart-menu" [class.open]="isCartMenuOpen" #cartmenu="">
+      <div class="cart-header">
+        <h3 class="cart-title">Shopping Cart</h3>
+        <p class="cart-status">
+          {{
+            cartItems.length &gt; 0 ? "Here are your items" : "Your cart is empty."
+          }}
+        </p>
+      </div>
+      <div class="cart-items-container" *ngif="cartItems.length > 0">
+        <ul>
+          <li *ngfor="let cartItem of cartItems">
+            <div class="item-details">
+              <img class="item-image" [src]="sanitizeImageUrl(cartItem.itemPic)">
+              <div class="item-info">
+                <p class="item-name">{{ cartItem.itemname }}</p>
+                <div class="item-actions">
+                  <button (click)="decreaseQuantity(cartItem)">-</button>
+                  <p class="item-quantity">{{ cartItem.quantity }}</p>
+                  <button (click)="increaseQuantity(cartItem)">+</button>
+                  <button class="Delete-item" (click)="deleteCartItem(cartItem)">
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <p class="item-price">{{ cartItem.price }}</p>
+            </div>
+            <p class="item-total">
+              {{ cartItem.price * cartItem.quantity | number : "1.2-2" }}
+            </p>
+          </li>
+        </ul>
+      </div>
+      <button class="checkout-button" *ngif="cartItems.length > 0" (click)="checkout()">Checkout</button>
+      <button class="close-cart" (click)="toggleCartMenu()">Close</button>
+      <div class="cart-total" *ngif="cartItems.length > 0">
+        <p>Total: {{ calculateTotalPrice() | number : "1.2-2" }}</p>
+      </div>
+    </div>
+    <div class="dropdown-menu" [class.open]="isMenuOpen" #dropdownmenu="">
+      <button class="close-button" (click)="toggleMenu()">Close</button>
+      <ul class="menu-list">
+        <li class="menu-list-item">
+          <button class="search-item-sex" (click)="Womens()">Women's</button>
+        </li>
+        <li class="menu-list-item">
+          <button class="search-item-sex" (click)="Mens()">Men's</button>
+        </li>
+        <li class="menu-list-item">Baby's</li>
+        <li class="menu-list-item">Sales</li>
+        <li>
+          <button class="account-button" (click)="goToAccountPage()">
+            Account
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+</div>
+</body></html>

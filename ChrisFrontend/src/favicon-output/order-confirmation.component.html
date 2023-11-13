@@ -1,0 +1,38 @@
+<!-- order-confirmation.component.html --><html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div class="order-confirmation-container">
+  <div class="order-confirmation-heading">
+    <h2>Order Confirmation</h2>
+  </div>
+  <div class="order-number">
+    <p>Order Number: {{ order.orderNumber }}</p>
+  </div>
+  <div class="shipto">
+    <p>Ship to : {{ order.shipto }}</p>
+  </div>
+  <div class="Address-Details">
+    <p>Shipping Address : {{ order.addressDetails }}</p>
+  </div>
+  <div>
+    <h3>Order Items</h3>
+    <ul>
+      <li *ngfor="let orderItem of orderItems">
+        <img class="item-image" [src]="sanitizeImageUrl(orderItem.itempic)">
+        <div class="item-info">
+          <p class="item-name">{{ orderItem.itemname }}</p>
+        </div>
+        <p class="item-price">
+          ${{ orderItem.price }} X {{ orderItem.quantity }}
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="total-price">
+    <p>Total Price: {{ order.totalPrice }}</p>
+  </div>
+</div>
+</body></html>

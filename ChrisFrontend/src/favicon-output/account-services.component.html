@@ -1,0 +1,82 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><button class="login-button" (click)="toggleLogin()" [ngclass]="{ 'active-button': loginMode, 'inactive-button': !loginMode }">
+  Login
+</button>
+<button class="create-account" (click)="toggleCreateAccount()" [ngclass]="{
+    'active-button': createAccountMode,
+    'inactive-button': !createAccountMode
+  }">
+  Create Account
+</button>
+<div class="big-div">
+  <h2>Your Account</h2>
+  <div *ngif="loginMode">
+    <h3>Login by User</h3>
+    <div>
+      <label for="username" class="colored-label">Username:</label>
+      <input class="input-field" type="text" id="username" [(ngmodel)]="username" (input)="clearEmailAndPassword()">
+    </div>
+    <div>
+      <label for="password" class="colored-label">Password:</label>
+      <input class="input-field" type="password" id="password" [(ngmodel)]="password" (input)="clearEmailAndPassword()">
+    </div>
+    <p>OR</p>
+    <h3>Login by Email</h3>
+    <div>
+      <label for="email" class="colored-label">Email:</label>
+      <input class="input-field" type="email" id="email" [(ngmodel)]="email" (input)="clearUsernameAndPassword()">
+    </div>
+    <div>
+      <label for="password" class="colored-label">Password:</label>
+      <input class="input-field" type="password" id="emailpassword" [(ngmodel)]="emailpassword" (input)="clearUsernameAndPassword()">
+    </div>
+    <div *ngif="loginMode">
+        <button class="login-submit-button" (click)="submitLoginForm()">
+          Submit
+        </button>
+        <div class="error-message" *ngif="errorMessage">{{ errorMessage }}</div>
+        <div class="ack" *ngif="ack">{{ ack }}</div>
+      </div>
+  </div>
+  <div *ngif="createAccountMode">
+    <div>
+      <label for="username" class="colored-label">UserName:</label>
+      <input class="input-field" type="text" id="username" [(ngmodel)]="username">
+    </div>
+    <div>
+      <label for="firstName" class="colored-label">First Name:</label>
+      <input class="input-field" type="text" id="firstName" [(ngmodel)]="firstName">
+    </div>
+    <div>
+      <label for="lastName" class="colored-label">Last Name:</label>
+      <input class="input-field" type="text" id="lastName" [(ngmodel)]="lastName">
+    </div>
+    <div>
+      <label for="email" class="colored-label">Email:</label>
+      <input class="input-field" type="email" id="email" [(ngmodel)]="email">
+    </div>
+    <div>
+      <label for="password" class="colored-label">Password:</label>
+      <input class="input-field" type="password" id="password" [(ngmodel)]="password">
+    </div>
+    <div>
+      <label for="confirmPassword" class="colored-label">Confirm Password:</label>
+      <input class="input-field" type="password" id="confirmPassword" [(ngmodel)]="confirmPassword">
+    </div>
+    <div class="error-message" *ngif="errorMessage">{{ errorMessage }}</div>
+    <div class="ack" *ngif="ack">{{ ack }}</div>
+    <div *ngif="createAccountMode">
+      <button class="create-account-submit-button" (click)="registerSubmitForm()">
+        Submit
+      </button>
+      <div class="error-message" *ngif="errorMessage">{{ errorMessage }}</div>
+      <div class="ack" *ngif="ack">{{ ack }}</div>
+    </div>
+  </div>
+</div>
+ </body></html>

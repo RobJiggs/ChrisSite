@@ -1,0 +1,142 @@
+<div outsideClick (outsideClick)="closeMenus()">
+  <header>
+    <nav class="navbar">
+      <div class="navbar-left" (click)="toggleMenu()">
+        <div class="menu-icon">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+      <div class="navbar-center">
+        <div class="logobox">
+          <a href="/">
+            <img class="logo" src="assets/Pictures/Logo.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+      <div class="navbar-right">
+        <div class="top-icons">
+          <div class="search-icon" (click)="toggleSearchBar()">
+            <img
+              class="searchpic"
+              src="assets\Pictures\search.png"
+              alt="Search"
+            />
+          </div>
+          <div class="cart-icon" (click)="toggleCartMenu()" #cartMenuButton >
+            <img class="cartpic" src="assets/Pictures/Bag.png" alt="Cart" />
+            <mat-badge [matBadge]="cartItemsCount" matBadgePosition="below" matBadgeColor="accent"></mat-badge>
+          </div>
+        </div>
+        <button class="logout-button" *ngIf="isLoggedIn" (click)="logout()">
+          Logout
+        </button>
+      </div>
+      
+    </nav>
+    <div class="search-bar" [class.open]="isSearchBarOpen" #searchBar>
+      <div class="search-bar-content">
+        <input type="text" placeholder="Search" />
+        <button class="search-icon" (click)="searchMethod()">
+          <img class="searchbuttonpic" src="assets/Pictures/search.png" alt="Search" />
+        </button>
+        
+        <button class="close-search" (click)="toggleSearchBar()">Close</button>
+      </div>
+    </div>
+
+    <div class="itemremovenotification" [class.open]="emptyItem">
+      <a> {{emptyItemMsg}}</a>
+    
+    
+    </div>  
+
+
+    <div class="cart-menu" [class.open]="isCartMenuOpen" #cartMenu>
+      <div class="cart-header">
+        <h3 class="cart-title">Shopping Cart</h3>
+        <p class="cart-status">
+          {{
+            cartItems.length > 0 ? "Here are your items" : "Your cart is empty."
+          }}
+        </p>
+      </div>
+      <div class="cart-items-container" *ngIf="cartItems.length > 0">
+        <ul>
+          <li *ngFor="let cartItem of cartItems">
+            <div class="item-details">
+              <img
+                class="item-image"
+                [src]="sanitizeImageUrl(cartItem.itemPic)"
+              />
+              <div class="item-info">
+                <p class="item-name">{{ cartItem.itemname }}</p>
+                <div class="item-actions">
+                  <button (click)="decreaseQuantity(cartItem)">-</button>
+                  <p class="item-quantity">{{ cartItem.quantity }}</p>
+                  <button (click)="increaseQuantity(cartItem)">+</button>
+                  <button
+                    class="Delete-item"
+                    (click)="deleteCartItem(cartItem)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <p class="item-price">{{ cartItem.price }}</p>
+            </div>
+            <p class="item-total">
+              {{ cartItem.price * cartItem.quantity | number : "1.2-2" }}
+            </p>
+          </li>
+        </ul>
+        
+      </div>
+      <button class="checkout-button" *ngIf="cartItems.length > 0" (click)="checkout()">Checkout</button>
+      <button class="close-cart" (click)="toggleCartMenu()">Close</button>
+      <div class="cart-total" *ngIf="cartItems.length > 0">
+        <p>Total: {{ calculateTotalPrice() | number : "1.2-2" }}</p>
+      </div>
+    </div>
+    <div class="dropdown-menu" [class.open]="isMenuOpen" #dropdownMenu>
+      
+      <button class="close-button" (click)="toggleMenu()">Close</button>
+      <img class="dropdown-logo" src="assets/Pictures/Logo.png" alt="Logo" />
+      <ul class="menu-list">
+        <li class="menu-list-item">
+          <button class="collapsible" (click)="toggleWomenMenu()"[class.active]="showWomenMenu">Women's</button>
+          <div class="content" [class.open]="showWomenMenu">
+            <button class="search-item-sex" (click)="Womens()">All Women's</button>
+            <button class="search-item-sex" (click)="WomensParams('New Arrivals')">New Arrivals</button>
+            <button class="collapsiblesub" (click)="toggleWomenSubMenu()"[class.active]="showWomenSubMenu">Apparel</button>
+            <div class="sub-menu" [class.open]="showWomenSubMenu">
+              <button class="sub-menu-item"*ngIf="showWomenSubMenu"(click)="WomensParams('Outerwear')">OuterWear</button>
+            
+              <!-- Add more sub-menu items if needed -->
+            </div>
+          </div>
+        </li>
+        <li class="menu-list-item">
+          <button class="collapsible" (click)="toggleMenMenu()"[class.active]="showMenMenu">Men's</button>
+          <div class="content" [class.open]="showMenMenu">
+            <button class="search-item-sex" (click)="Mens()">All Men's</button>
+            <button class="search-item-sex" (click)="MensParams('New Arrivals')">New Arrivals</button>
+            <button class="collapsiblesub" (click)="toggleMenSubMenu()"[class.active]="showMenSubMenu">Apparel</button>
+            <div class="sub-menu" [class.open]="showMenSubMenu">
+              <button class="sub-menu-item"*ngIf="showMenSubMenu"(click)="MensParams('Outerwear')">OuterWear</button>
+              
+              <!-- Add more sub-menu items if needed -->
+            </div>
+          </div>
+        </li>
+        <li class="menu-list-item"><button class="search-item-sex" >Sales</button></li>
+
+        <li>
+          <button class="account-button" (click)="goToAccountPage()"> {{ isLoggedIn ? 'Account' : 'Login' }}</button>
+        </li>
+      </ul>
+    </div>
+    
+  </header>
+</div>

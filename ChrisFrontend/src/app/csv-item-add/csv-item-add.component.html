@@ -1,0 +1,13 @@
+<head>
+    <title>CSV File Upload</title>
+</head>
+<body>
+    <form (submit)="uploadCSVFile($event)" enctype="multipart/form-data">
+        <input type="file" #fileInput accept=".csv">
+        <input type="submit" value="Upload CSV">
+    </form>
+    
+    
+</body>
+
+

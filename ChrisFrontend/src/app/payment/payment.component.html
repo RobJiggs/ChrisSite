@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="contact-ship-info">
+      <div class="contact-info">
+        <span>Contact Info </span>
+        <span>{{email}}</span>
+        <div class="change-button-container">
+          <button class="change-button" (click)="goToEmailField()">Change</button>
+        </div>
+      </div>
+      <hr class="info-divider">
+      <div class="ship-to">
+        <span>Ship To </span>
+        <span>{{shippingdetail}}</span>
+        <div class="change-button-container">
+          <button class="change-button" (click)="goToAddyField()">Change</button>
+        </div>
+      </div>
+      <hr class="info-divider">
+      <div class="method">
+        <span> Method</span>
+        {{method}}
+      </div>
+    </div>
+    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    <div class="button-container">
+      <button class="return-button"(click)="goToShipping()">Return to Shipping</button>
+      <button class="continue-button">Pay Now</button>
+    </div>
+    <div *ngIf="showFailure" class="error-message">{{ errorMsg }}</div>
+    <div *ngIf="showSuccess" class="success-message">{{ successMsg }}</div>
+
+  </div>
+  
+  <div class="shipping-info">
+    <div class="cart-items-container" *ngIf="cartItems.length > 0">
+      <ul>
+        <li *ngFor="let cartItem of cartItems">
+          <div class="item-details">
+            <img class="item-image" [src]="sanitizeImageUrl(cartItem.itemPic)" />
+            <div class="item-info">
+              <p class="item-name">{{ cartItem.itemname }}</p>
+            </div>
+            <p class="item-price">
+              ${{ cartItem.price }} X {{ cartItem.quantity }}
+            </p>
+          </div>
+          <p class="item-subtotal">
+            ${{ cartItem.price * cartItem.quantity | number : "1.2-2" }}
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="cart-total-container" *ngIf="cartItems.length > 0">
+      <div class="cart-total">
+        <p>Subtotal: {{ calculateTotalPrice() | number : "1.2-2" }}</p>
+        <p>Shipping: {{ calculateShipping() | number : "1.2-2" }}</p>
+        <p>Tax: {{ calculateTax() | number : "1.2-2" }}</p>
+        <p class="post-total">
+          Total:
+          {{ calculatePostTotal() | number : "1.2-2" }}
+        </p>
+      </div>
+    </div>
+  </div>
+  

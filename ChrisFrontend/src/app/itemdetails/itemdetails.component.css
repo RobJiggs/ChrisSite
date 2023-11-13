@@ -1,0 +1,123 @@
+
+.color-button {
+    padding: 10px 20px;
+    
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: background-color 0.3s; /* Add a smooth transition effect */
+  }
+  
+  .color-button.selected {
+    border: 3px solid #fff; /* Add a 3px white solid border to the selected button */
+    border-radius: 30%;
+    /* Change the background color for the selected button */
+  }
+
+  
+  .color-button.selected[style*="background-color: white"] {
+    border: 3px solid black; /* Change the border color to black for selected white buttons */
+  }
+
+  .size-button,
+.sex-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.size-button.selected,
+.sex-button.selected {
+  background-color: #ff9900; /* Change the background color for the selected button */
+}
+
+  
+  
+  .image{
+
+    width: 100px;
+    height: 100px;
+
+  }
+
+
+
+  /* Rounded Button */
+.rounded {
+  border-radius: 20px; /* Adjust the value as needed for the desired level of rounding */
+}
+
+/* Blue Button */
+.blue {
+  background-color: blue; /* Change the color to your preferred shade of blue */
+  color: white; /* Text color (white for contrast) */
+  padding: 10px 20px; /* Adjust padding to suit your button size */
+  border: none; /* Remove the default button border */
+  cursor: pointer; /* Add pointer cursor for interaction */
+}
+
+/* Hover effect for the blue button */
+.blue:hover {
+  background-color: darkblue; /* Change to a darker shade on hover, if desired */
+}
+
+
+.add-to-cart-container{
+  margin-top: 20px;
+
+
+
+}
+ /* Assuming this is your component's CSS file, e.g., item-details.component.css */
+
+/* Style the dropdown container */
+/* Adjust the width of the dropdown and double the size of the label */
+.quantity-dropdown {
+  margin-top: 10px;
+}
+
+.quantity-dropdown label {
+  font-weight: bold;
+  font-size: 16px; /* Double the font size */
+}
+
+.quantity-dropdown select {
+  width: 20%; /* Make the dropdown 50% of the container width */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}
+
+.quantity-dropdown option {
+  background-color: #fff;
+  color: #333;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999; /* Adjust the z-index to make it appear on top of everything else */
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

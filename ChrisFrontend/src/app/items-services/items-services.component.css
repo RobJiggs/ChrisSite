@@ -1,0 +1,113 @@
+.ItemImage{
+    width: 200px;
+    height: 200px;
+
+
+
+
+}
+
+.ImageGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .ImageBox {
+    text-align: center;
+    
+  }
+  
+
+
+  .BackgroundImage {
+    background-image: url('/assets/Pictures/homebackground.jpg');
+    background-size: cover;
+  background-position: center;
+  text-align: center;
+  color:#FFB41F ;
+  padding: 50px;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+  top: -125px;
+  z-index: 0;
+  background-color: #616161;
+  }
+
+  .Popup{
+    color: black;
+
+
+
+  } 
+  .featured-tag {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    margin-bottom: 100px;
+    
+  }
+  
+  .featured-tag h1 {
+    color: black;
+    
+    
+  }
+  .line {
+    width: 100px; 
+    height: 2px; 
+    background-color: #FFB41F; 
+    
+  }
+
+
+  .Pictures{
+    background-image: url('/assets/Pictures/homebackground2.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  
+  .Pictures{
+    position: relative;
+    top: -110px;
+
+  }
+  @font-face {
+    font-family: 'Bacasime Antique';
+    src: url('../../fonts/BacasimeAntique-Regular.ttf') format('ttf');
+    /* Add other font formats if necessary */
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+
+
+  .all{
+background-color: #616161;
+
+  }
+
+
+  .ItemName {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  .itemPrice {
+    font-family: Cambria, serif;
+    font-weight: 900;
+  }
+  
+  .sizebutton{
+
+
+    background-color:#F5F5F5;
+    border: none;
+    color: #FFB41F;
+
+  }

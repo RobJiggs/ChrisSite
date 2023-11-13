@@ -1,0 +1,68 @@
+<div class="item-details">
+  <h1>{{ itemName }}</h1> <!-- Display the item name at the top -->
+
+  <div class="item-info">
+    <!-- Image on the left -->
+    <div class="item-image">
+      <img class="image" [src]="distinctPicture.length > 0 ? distinctPicture[0] : ''" alt="{{ itemName }}" />
+    </div>
+
+    <!-- Price on the right -->
+    <div class="item-price">
+      <p class="price-text">${{ price }} X {{ selectedQuantity }} = ${{ price * selectedQuantity }}</p>
+    </div>
+    
+    <div class="popup" *ngIf="showAddedtoCartPopup">
+      <div class="popup-content">
+        <!-- Your popup content here -->
+        <p>Item added to cart!</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="color-options">
+    <h3>Available Colors:</h3>
+    <button
+      *ngFor="let color of distinctColors"
+      class="color-button rounded"
+      [style.background-color]="color"
+      [ngClass]="{ 'selected': selectedColor === color }"
+      (click)="selectColor(color)"
+    ></button>
+  </div>
+
+  <div class="size-options">
+    <h3>Available Sizes:</h3>
+    <button
+      *ngFor="let size of distinctSizes"
+      class="size-button"
+      [ngClass]="{ 'selected': selectedSize === size }"
+      (click)="selectSize(size)"
+    >{{ size }}</button>
+  </div>
+
+  <div class="sex-options">
+    <h3>Available Sexes:</h3>
+    <button
+      *ngFor="let sex of distinctSexes"
+      class="sex-button"
+      [ngClass]="{ 'selected': selectedSex === sex }"
+      (click)="selectSex(sex)"
+    >{{ sex }}</button>
+  </div>
+
+  <!-- Quantity Dropdown -->
+  <div class="quantity-dropdown">
+    <label for="quantity">Quantity:</label>
+    <select id="quantity" [(ngModel)]="selectedQuantity">
+      <option *ngFor="let num of quantityOptions" [value]="num">{{ num }}</option>
+    </select>
+  </div>
+
+  <!-- Moved the Add to Cart button lower and applied styling -->
+  <div class="add-to-cart-container">
+    <button class="add-to-cart-button rounded blue" (click)="addtoCart(itemName, selectedColor, selectedSex, selectedSize, selectedQuantity)">Add to Cart</button>
+
+  </div>
+</div>

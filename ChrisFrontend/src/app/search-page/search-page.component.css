@@ -1,0 +1,275 @@
+.ItemImage{
+    width: 150px;
+    height: 150px;
+
+
+
+
+}
+
+.ImageGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px;
+    
+   
+  }
+  
+  .ImageBox {
+    text-align: center;
+  }
+  
+ 
+  .title-menu {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Add margin to create spacing between elements */
+    
+   
+    
+  }
+  
+ 
+  
+  .dropdown-menu {
+    /* or absolute/fixed depending on your layout */
+    display: inline-block; 
+   
+  
+    width: 5px;
+    
+    
+    /* or block depending on your layout */
+  }
+  .dropdown-menu select {
+    padding: 0;
+    width: 100%;
+    
+  }
+
+  .search-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .search-bar.open {
+    display: flex;
+  }
+  
+  .search-bar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .close-search {
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    background: none;
+    color: #e6b333;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:transparent;
+    
+  }
+  
+  .left-section {
+    display: flex;
+  }
+  
+  .collection,
+  .category-men,
+  .category-women,
+  .sales {
+    margin-right: 15px;
+  }
+  
+  .collection a,
+  .category-men a,
+  .category-women a,
+  .sales a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .logobox {
+    margin: 0 auto;
+  }
+  
+  .logo {
+    width: 150px;
+    height: 100px;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout-button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    color: #7a7a7a;
+  }
+  
+  .category-account a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .searchpic,
+  .cartpic {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  .Pictures {
+    margin-top: 20px;
+  }
+ 
+  
+  .cartpic {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  
+ 
+ 
+  
+
+  
+  .advanced-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and opacity as needed */
+  z-index: 9999;
+  display: none; /* Ensure a higher z-index value than other elements on the page */
+}
+
+.advanced-search-menu {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  z-index: 10000;
+  width: 400px; /* Make sure the menu appears above the overlay */
+}
+
+.advanced-search-menu.open {
+  display: block;
+}
+
+.advanced-search-overlay.open {
+  display: block;
+}
+
+  
+  .advanced-search-menu-content {
+    display: table;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .close-advanced {
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    background: none;
+    color: #e6b333;
+  }
+
+  .searchpic-icon{
+
+    width: 25px;
+    height: 25px;
+  }
+
+ 
+  
+  
+ 
+  
+  .top-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon,
+.cart-icon {
+  margin-right: 10px;
+}
+
+
+.category-account {
+  margin-right: 10px;
+}
+
+
+
+
+.Popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.collection a,
+  .category-men a,
+  .category-women a,
+  .sales a {
+    text-decoration: none;
+    color: #F5F5F5;
+    transition: color 0.3s;
+  }
+  
+  .collection a:hover,
+  .category-men a:hover,
+  .category-women a:hover,
+  .sales a:hover {
+    color: #e6b333; /* Hover color change */
+  }
+  
+  .category-account a {
+    text-decoration: none;
+    color: #F5F5F5;
+    transition: color 0.3s;
+  }
+  
+  .category-account a:hover {
+    color: #e6b333; /* Hover color change */
+  }
+
+
+
+

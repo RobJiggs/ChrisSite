@@ -1,0 +1,20 @@
+<div class="Pictures" *ngIf="items">
+  <div class="ImageGrid">
+    <ng-container *ngFor="let item of items">
+      <div class="ImageBox"
+           (mouseenter)="onMouseEnter(item)"
+           (mouseleave)="onMouseLeave(item)">
+        <img class="ItemImage" [src]="sanitizeImageUrl(item.image)" />
+        <p *ngIf="!item.showSizes">{{ getDisplayItemName(item) }}</p>
+        <p *ngIf="!item.showSizes">{{ item.price }}</p>
+        <div *ngIf="item.showSizes">
+          <button class="sizebutton" *ngFor="let size of Sizes" (click)="createCartItem(item.itemName, item.color, item.sex, size)">{{ size }}</button>
+        </div>
+      </div>
+    </ng-container>
+   </div>
+  <div class="Popup" *ngIf="showAddedToCartPopup">
+    <p>{{ addedItemName }} added to cart!</p>
+  </div>
+</div>
+

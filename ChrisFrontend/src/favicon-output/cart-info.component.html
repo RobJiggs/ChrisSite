@@ -1,0 +1,36 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div class="shipping-info">
+    <div class="cart-items-container" *ngif="cartItems.length > 0">
+      <ul>
+        <li *ngfor="let cartItem of cartItems" class="cart-item" (mouseenter)="hoveredCartItem = cartItem" (mouseleave)="hoveredCartItem = null">
+          <div class="item-details">
+            <img class="item-image" [src]="sanitizeImageUrl(cartItem.itemPic)">
+            <div class="item-info">
+              <p class="item-name">{{ cartItem.itemname }}</p>
+            </div>
+            <p class="item-price">
+              ${{ cartItem.price }} X {{ cartItem.quantity }}
+            </p>
+            <button class="delete-button" (click)="deleteCartItem(cartItem)" *ngif="hoveredCartItem === cartItem">
+                Delete
+              </button>
+          </div>
+          <p class="item-subtotal">
+            ${{ cartItem.price * cartItem.quantity | number : "1.2-2" }}
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="cart-total-container" *ngif="cartItems.length > 0">
+      <div class="cart-total">
+        <p>Subtotal: {{ calculateTotalPrice() | number : "1.2-2" }}</p>
+      </div>
+    </div>
+    <button class="checkout-button" routerlink="/checkout">Go to Checkout</button>
+  </div>
+  </body></html>

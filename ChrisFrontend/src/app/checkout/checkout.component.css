@@ -1,0 +1,195 @@
+.logo {
+    width: 250px;
+    height: 125px;
+  }
+  
+  .item-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .cart-items-container {
+    max-height: 300px;
+    overflow-y: hidden;
+    width: 400px;
+    position: relative;
+    top: -450px;
+    left: 950px;
+  }
+  .cart-total-container {
+    padding-left: 1030px;
+    margin-top: -400px;
+  }
+  ul{
+    list-style-type: none;
+
+  }
+  
+  .cart-items-container:hover {
+    overflow-y: auto;
+  }
+  
+  .cart-items-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .cart-items-container::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
+  
+  .cart-items-container::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+  }
+  
+  .cart-items-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
+
+  
+  .item-subtotal {
+    font-weight: bold;
+    padding-left: 300px;
+  }
+  
+ 
+  
+  .post-total {
+    font-weight: bolder;
+  }
+  
+  .express-label {
+    padding-left: 260px;
+  }
+  
+  .express-checkout-buttons {
+    padding-left: 100px;
+  }
+  
+  .shipping-address {
+    padding-top: 0px;
+    padding-left: 100px;
+  }
+  
+  .shipping-label {
+    font-size: 20px;
+    margin-top: 50px;
+  }
+  
+  .line-with-or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .line {
+    width: 50%;
+    color: #ffffff;
+    flex-grow: 1;
+    border: none;
+    border-top: white;
+  }
+  
+  .or {
+    padding: 0 10px;
+    font-weight: bold;
+    color: white;
+    padding-right: 1150px;
+  }
+  
+  .country-dropdown {
+    
+    margin-left: 100px;
+    width: 475px;
+    height: 40px;
+    margin-top: 10px;
+  }
+  .fname{
+    width: 350px;
+    height: 40px;
+  }
+  .lname{
+    width: 350px;
+    height: 40px;
+
+  }
+  .name{
+    margin-left: 100px;
+    margin-top: 20px;
+
+  }
+  .address{
+    margin-left: 100px;
+    
+
+  }
+  .etc{
+    
+    width: 400px;
+    height: 40px;
+    margin-top: 20px;
+
+  }
+  .city-state-zip{
+
+  margin-left: 100px;
+  margin-top:20px ;
+  
+  }
+
+  .state-dropdown{
+    height: 40px;
+
+
+  }
+  .city{
+    height: 40px;
+
+
+
+  }
+  .zip{
+
+    height: 40px;
+
+  }
+
+  .option-buttons{
+
+
+    margin-left: 100px;
+    margin-top: 30px;
+    
+  }
+
+  .contact-info{
+
+    margin-left: 100px;
+
+
+
+  }
+  .email{
+    margin-left: 100px;
+    width: 500px;
+    height: 40px;
+    margin-top: 10px;
+    
+
+  }
+  .address{
+    width: 500px;
+    height: 40px;
+
+
+
+  }
+  .error-messages {
+    position: absolute;
+    top: 100%; /* Adjust the top value as needed */
+    left: 10%; /* Adjust the left value as needed */
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  

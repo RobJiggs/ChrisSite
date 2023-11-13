@@ -1,0 +1,71 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div class="container">
+    <div class="contact-ship-info">
+      <div class="contact-info">
+        <span>Contact Info </span>
+        <span>{{email}}</span>
+        <div class="change-button-container">
+          <button class="change-button" (click)="goToEmailField()">Change</button>
+        </div>
+      </div>
+      <hr class="info-divider">
+      <div class="ship-to">
+        <span>Ship To </span>
+        <span>{{shippingdetail}}</span>
+        <div class="change-button-container">
+          <button class="change-button" (click)="goToAddyField()">Change</button>
+        </div>
+      </div>
+    </div>
+    <h2 class="shipping-method-title">Shipping Method</h2>
+    <div class="shipping-method">
+        <input type="radio" id="method1" name="shippingMethod" value="method1" [(ngmodel)]="selectedShippingMethod">
+        <label for="method1">Shipping Method 1</label><br>
+        <input type="radio" id="method2" name="shippingMethod" value="method2" [(ngmodel)]="selectedShippingMethod">
+        <label for="method2">Shipping Method 2</label><br>
+    </div>
+    <div *ngif="isShippingMethodInvalid()" class="error-message">
+      Please select a Shipping Method
+    </div>
+    <div class="button-container">
+      <button class="return-button" (click)="goToCheckout()">Return to Information</button>
+      <button class="continue-button" (click)="goToPayment()">Continue to Payment</button>
+    </div>
+  </div>
+  <div class="shipping-info">
+    <div class="cart-items-container" *ngif="cartItems.length > 0">
+      <ul>
+        <li *ngfor="let cartItem of cartItems">
+          <div class="item-details">
+            <img class="item-image" [src]="sanitizeImageUrl(cartItem.itemPic)">
+            <div class="item-info">
+              <p class="item-name">{{ cartItem.itemname }}</p>
+            </div>
+            <p class="item-price">
+              ${{ cartItem.price }} X {{ cartItem.quantity }}
+            </p>
+          </div>
+          <p class="item-subtotal">
+            ${{ cartItem.price * cartItem.quantity | number : "1.2-2" }}
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="cart-total-container" *ngif="cartItems.length > 0">
+      <div class="cart-total">
+        <p>Subtotal: {{ calculateTotalPrice() | number : "1.2-2" }}</p>
+        <p>Shipping: {{ calculateShipping() | number : "1.2-2" }}</p>
+        <p>Tax: {{ calculateTax() | number : "1.2-2" }}</p>
+        <p class="post-total">
+          Total:
+          {{ calculatePostTotal() | number : "1.2-2" }}
+        </p>
+      </div>
+    </div>
+  </div>
+  </body></html>

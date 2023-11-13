@@ -1,0 +1,13 @@
+<div *ngFor="let order of orders" class="order-container">
+    <h2>Order Number: {{ order.orderNumber }}</h2>
+    <p>Date of Order: {{ order.dateOfOrder }}</p>
+    <p>Status: {{ order.status }}</p>
+    <p>Status Message: {{ order.statusMessage }}</p>
+    <p>Phone Number: {{ order.phoneNumber }}</p>
+    <p>Address Details: {{ order.addressDetails }}</p>
+    <p>Shipped to: {{ order.shipto }}</p>
+    <p class="price">Total Price: {{ order.totalPrice }}</p>
+    <button (click)="setSessionOrderId(order.orderNumber)">Set Order ID</button>
+    <hr>
+  </div>
+  

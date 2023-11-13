@@ -1,0 +1,284 @@
+<div class="container">
+  <div *ngIf="addys.length === 0" class="address-section">
+    <div class="address-label">Create Address</div>
+    <div class="create-address-field">
+      <label for="newStreet"></label>
+      <input
+        type="text"
+        id="newStreet"
+        [(ngModel)]="newAddress.street"
+        placeholder="Street"
+      />
+    </div>
+    <div class="create-address-field">
+      <label for="newETC"></label>
+      <input
+        type="text"
+        id="newETC"
+        [(ngModel)]="newAddress.etc"
+        placeholder="Apartment,Suite,etc(optional) "
+      />
+    </div>
+    <div class="create-address-field">
+      <label for="newCity"></label>
+      <input
+        type="text"
+        id="newCity"
+        [(ngModel)]="newAddress.city"
+        placeholder="City"
+      />
+    </div>
+    <div class="create-address-field">
+      <label for="newState"></label>
+      <input
+        type="text"
+        id="newState"
+        [(ngModel)]="newAddress.state"
+        placeholder="State"
+      />
+    </div>
+    <div class="create-address-field">
+      <label for="newCountry"></label>
+      <input
+        type="text"
+        id="newCountry"
+        [(ngModel)]="newAddress.country"
+        placeholder="Country"
+      />
+    </div>
+    <div class="create-address-field">
+      <label for="newZipcode"></label>
+      <input
+        type="text"
+        id="newCountry"
+        [(ngModel)]="newAddress.zipcode"
+        placeholder="Zipcode"
+      />
+    </div>
+
+    <button (click)="createAddress()" class="buttons">Create Address</button>
+  </div>
+</div>
+<div class="big-container">
+  <div class="container">
+    <div *ngIf="addys.length === 1">
+      <div *ngFor="let address of addys">
+        <div class="address-section">
+          <div class="address-label">Main Address</div>
+          <div class="address-field">
+            <label for="street{{ address.addyid }}">Street</label>
+            <input
+              type="text"
+              id="street{{ address.addyid }}"
+              [(ngModel)]="address.street"
+            />
+          </div>
+          <div class="address-field">
+            <label for="etc{{ address.addyid }}"></label>
+            <input
+              type="text"
+              id="etc{{ address.addyid }}"
+              [(ngModel)]="address.etc"
+              placeholder="Apartment,Suite,etc(optional) "
+            />
+          </div>
+          <div class="address-field">
+            <label for="city{{ address.addyid }}">City</label>
+            <input
+              type="text"
+              id="city{{ address.addyid }}"
+              [(ngModel)]="address.city"
+            />
+          </div>
+          <div class="address-field">
+            <label for="state{{ address.addyid }}">State</label>
+            <input
+              type="text"
+              id="state{{ address.addyid }}"
+              [(ngModel)]="address.state"
+            />
+          </div>
+          <div class="address-field">
+            <label for="country{{ address.addyid }}">Country</label>
+            <input
+              type="text"
+              id="country{{ address.addyid }}"
+              [(ngModel)]="address.country"
+            />
+          </div>
+
+          <div class="address-field">
+            <label for="zipcode{{ address.addyid }}">Zip Code</label>
+            <input
+              type="text"
+              id="zipcode{{ address.addyid }}"
+              [(ngModel)]="address.zipcode"
+            />
+          </div>
+          <button (click)="saveAddress(addys[0])">Save Main address</button>
+          <button
+            *ngIf="!showSecondaryAddress"
+            (click)="showSecondaryAddress = true"
+          >
+            Add Secondary Address
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div *ngIf="showSecondaryAddress">
+      <div class="address-section">
+        <div class="address-label">Secondary Address</div>
+        <!-- Display the additional address fields -->
+        <div class="address-field">
+          <label for="street2"></label>
+          <input
+            type="text"
+            id="street2"
+            [(ngModel)]="secondaryAddress.street"
+            placeholder="Please enter Street"
+          />
+        </div>
+        <div class="address-field">
+          <label for="etc2"></label>
+          <input
+            type="text"
+            id="etc2"
+            [(ngModel)]="secondaryAddress.etc"
+            placeholder="Apartment,Suite,etc(optional) "
+          />
+        </div>
+        <div class="address-field">
+          <label for="city2">City</label>
+          <input
+            type="text"
+            id="city2"
+            [(ngModel)]="secondaryAddress.city"
+            placeholder="Please enter City"
+          />
+        </div>
+        <div class="address-field">
+          <label for="state2">State</label>
+          <input
+            type="text"
+            id="state2"
+            [(ngModel)]="secondaryAddress.state"
+            placeholder="State"
+          />
+        </div>
+        <div class="address-field">
+          <label for="country2"></label>
+          <input
+            type="text"
+            id="country2"
+            [(ngModel)]="secondaryAddress.country"
+            placeholder="Country"
+          />
+        </div>
+
+        <div class="address-field">
+          <label for="zipcode2">Zip Code</label>
+          <input
+            type="text"
+            id="zipcode2"
+            [(ngModel)]="secondaryAddress.zipcode"
+            placeholder="Please enter Zipcode"
+          />
+        </div>
+        <button (click)="createSecondary()">Save Address</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="address-section-1" *ngIf="addys.length === 2">
+  <div class="address-section2" *ngFor="let address of addys; let i = index">
+    <div>
+      <div class="address-label">
+        {{ i === 0 ? "MAIN" : "Secondary" }}
+        <button
+          *ngIf="editAddress"
+          class="editbutton"
+          (click)="toggleAddressEdit()"
+        >
+          <img class="edit-image" src="assets/Pictures/yellowpen.png" />
+        </button>
+        <div *ngIf="!editAddress" class="address-container">
+          <div class="address-field">
+            <label for="street{{ address.addyid }}">Street</label>
+            <input
+              type="text"
+              id="street{{ address.addyid }}"
+              [(ngModel)]="address.street"
+            />
+          </div>
+          <div class="address-field">
+            <label for="city{{ address.addyid }}">City</label>
+            <input
+              type="text"
+              id="city{{ address.addyid }}"
+              [(ngModel)]="address.city"
+            />
+          </div>
+          <div class="address-field">
+            <label for="state{{ address.addyid }}">State</label>
+            <input
+              type="text"
+              id="state{{ address.addyid }}"
+              [(ngModel)]="address.state"
+            />
+          </div>
+          <div class="address-field">
+            <label for="country{{ address.addyid }}">Country</label>
+            <input
+              type="text"
+              id="country{{ address.addyid }}"
+              [(ngModel)]="address.country"
+            />
+          </div>
+          <div class="address-field">
+            <label for="etc{{ address.addyid }}">ETC</label>
+            <input
+              type="text"
+              id="etc{{ address.addyid }}"
+              [(ngModel)]="address.etc"
+            />
+          </div>
+          <div class="address-field">
+            <label for="zipcode{{ address.addyid }}">Zip Code</label>
+            <input
+              type="text"
+              id="zipcode{{ address.addyid }}"
+              [(ngModel)]="address.zipcode"
+            />
+          </div>
+        </div>
+        <div *ngIf="editAddress" class="address-container">
+          <div class="address-field">
+            <a>Street {{ address.street }}</a>
+            <a>{{ address.etc }} </a>
+          </div>
+          <div class="address-field">
+            <a>City {{ address.city }}</a>
+          </div>
+          <div class="address-field">
+            <a>State {{ address.state }}</a>
+          </div>
+          <div class="address-field">
+            <a>Country {{ address.country }}</a>
+          </div>
+          <div class="address-field">
+            <a>Zipcode {{ address.zipcode }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button *ngIf="addys.length === 2 && !editAddress" (click)="saveAddresses()">
+    Save Addresses
+  </button>
+</div>

@@ -1,0 +1,26 @@
+.ItemImage{
+    width: 200px;
+    height: 200px;
+
+
+
+
+}
+
+.ImageGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .ImageBox {
+    text-align: center;
+  }
+  .sizebutton{
+
+
+    background-color:#F5F5F5;
+    border: none;
+    color: #FFB41F;
+
+  }

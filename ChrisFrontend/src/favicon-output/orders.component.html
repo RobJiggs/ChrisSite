@@ -1,0 +1,19 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div *ngfor="let order of orders" class="order-container">
+    <h2>Order Number: {{ order.orderNumber }}</h2>
+    <p>Date of Order: {{ order.dateOfOrder }}</p>
+    <p>Status: {{ order.status }}</p>
+    <p>Status Message: {{ order.statusMessage }}</p>
+    <p>Phone Number: {{ order.phoneNumber }}</p>
+    <p>Address Details: {{ order.addressDetails }}</p>
+    <p>Shipped to: {{ order.shipto }}</p>
+    <p class="price">Total Price: {{ order.totalPrice }}</p>
+    <button (click)="setSessionOrderId(order.orderNumber)">Set Order ID</button>
+    <hr>
+  </div>
+  </body></html>

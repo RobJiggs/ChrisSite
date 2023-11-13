@@ -1,0 +1,144 @@
+<div outsideClick (outsideClick)="closeMenus()">
+
+  <div class="header">
+    <div class="left-section">
+      <div class="collection">
+        <a href="/collections">Collections</a>
+      </div>
+      <div class="category-men">
+        <a href="/mens">Mens</a>
+      </div>
+      <div class="category-women">
+        <a href="/womens">Womens</a>
+      </div>
+      <div class="sales">
+        <a href="/sales">Sales</a>
+      </div>
+    </div>
+    <div class="logobox">
+      <a href="/">
+        <img class="logo" src="assets/Pictures/Logo.png" alt="Logo" />
+      </a>
+    </div>
+    <div class="right-section">
+      <button class="logout-button" *ngIf="isLoggedIn">Logout</button>
+      <div class="category-account">
+        <a href="/account"> {{ isLoggedIn ? 'Account' : 'Login' }}</a>
+      </div>
+      <div class="search-icon" (click)="toggleSearchBar()">
+        <img class="searchpic" src="assets/Pictures/search.png" alt="Search" />
+      </div>
+      <div class="cart-icon">
+        <a href="/cart">
+          <img class="cartpic" src="assets/Pictures/Bag.png" alt="Cart" />
+        </a>
+      </div>
+    </div>
+ 
+    
+    <div class="search-bar" [class.open]="isSearchBarOpen" #searchBar>
+      <div class="search-bar-content">
+        <input type="text" placeholder="Search" />
+        <button class="search-icon" (click)="searchMethod()">
+          <img class="searchpic-icon" src="assets/Pictures/search.png" alt="Search" />
+        </button>
+        <button class="close-search" (click)="toggleSearchBar()">Close</button>
+        <button class="advance-search" (click)="toggleAdvancedSearch()">Advanced Search</button>
+      </div>
+    </div>
+  
+        
+      
+    
+    <div class="advanced-search-overlay" [class.open]="isAdvancedSearchOpen" (click)="toggleAdvancedSearchBar()"></div>
+  <div class="advanced-search-menu" [class.open]="isAdvancedSearchOpen" #advancedSearchMenu>
+      <div class="field">
+        <label for="sex">Sex:</label>
+        <select id="sex" [(ngModel)]="advancedSearchSex">
+          <option value="">All</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="category">Category:</label>
+        <input type="text" id="category" [(ngModel)]="advancedSearchCategory">
+      </div>
+      <div class="field">
+        <label for="color">Color:</label>
+        <input type="text" id="color" [(ngModel)]="advancedSearchColor">
+      </div>
+      <div class="field">
+        <label for="size">Size:</label>
+        <select id="size" [(ngModel)]="advancedSearchSize">
+          <option value="">All</option>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" [(ngModel)]="advancedSearchItemName">
+      </div>
+      <div class="field">
+        <mat-slider [min]="0" [max]="400" [step]=".25" thumbLabel>
+          <input matSliderStartThumb [(ngModel)]="advancedSearchMinPrice">
+          <input matSliderEndThumb [(ngModel)]="advancedSearchMaxPrice">
+        </mat-slider>
+        <span>Min: {{ advancedSearchMinPrice | currency }}</span> - <span>Max: {{ advancedSearchMaxPrice | currency }}</span>
+      </div>
+      
+      
+      <div class="field">
+        <label for="dateAdded">Date Added:</label>
+        <input type="date" id="dateAdded" [(ngModel)]="advancedSearchDateAdded">
+      </div>
+      <div class="field">
+        <label for="featured">Featured:</label>
+        <input type="checkbox" id="featured" [(ngModel)]="advancedSearchFeatured">
+      </div>
+      <button (click)="performAdvancedSearch()">Search</button>
+      <button class="close-advanced" (click)="toggleAdvancedSearchBar()">Close</button>
+    </div>
+    
+   
+  
+</div>
+<div class="title-menu">
+  <h2>Search Results</h2>
+ 
+  
+</div>
+<div class="item-count">
+  <p>{{ items?.length || 0 }} items found</p>
+</div>
+<div class="dropdown-menu">
+  <select [(ngModel)]="selectedSortOption" (change)="sortItems()">
+    <option value="relevance" selected>Relevance</option>
+    <option value="dateMostRecent">Date(most recent)</option>
+    <option value="dateLeastRecent">Date(least recent)</option>
+    <option value="priceHighToLow">Price(high to low)</option>
+    <option value="priceLowToHigh">Price(low to high)</option>
+    
+  </select>
+</div>
+
+<div class="Pictures" *ngIf="items && items.length > 0">
+  <div class="ImageGrid">
+    <div class="ImageBox" *ngFor="let item of items"
+         (mouseenter)="onMouseEnter(item)"
+         (mouseleave)="onMouseLeave(item)">
+      <img class="ItemImage" [src]="sanitizeImageUrl(item.image)" />
+      <p *ngIf="!item.showSizes">{{ getDisplayItemName(item) }}</p>
+      <p *ngIf="!item.showSizes">{{ item.price }}</p>
+      <div *ngIf="item.showSizes">
+        <button *ngFor="let size of Sizes" (click)="createCartItem(item.itemName, item.color, item.sex, size)">{{ size }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="Popup" *ngIf="showAddedToCartPopup" id="Popup">
+  <p>{{ addedItemName }} added to cart!</p>
+</div>

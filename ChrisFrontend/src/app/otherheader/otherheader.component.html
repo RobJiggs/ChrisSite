@@ -1,0 +1,49 @@
+<div outsideClick (outsideClick)="closeMenus()">
+  <header class="header">
+    <div class="left-section">
+      <div class="collection">
+        <a href="/collections">Collections</a>
+      </div>
+      <div class="category-men">
+        <a href="/mens">Mens</a>
+      </div>
+      <div class="category-women">
+        <a href="/womens">Womens</a>
+      </div>
+      <div class="sales">
+        <a href="/sales">Sales</a>
+      </div>
+    </div>
+    <div class="logobox">
+      <a href="/">
+        <img class="logo" src="assets/Pictures/Logo.png" alt="Logo" />
+      </a>
+    </div>
+    <div class="right-section">
+      <button class="logout-button" *ngIf="isLoggedIn">Logout</button>
+      <div class="category-account">
+        <a href="/account"> {{ isLoggedIn ? 'Account' : 'Login' }}</a>
+      </div>
+      <div class="search-icon" (click)="toggleSearchBar()">
+        <img class="searchpic" src="assets/Pictures/search.png" alt="Search" />
+      </div>
+      <div class="cart-icon">
+        <a href="/cart">
+          <img class="cartpic" src="assets/Pictures/Bag.png" alt="Cart" />
+        </a>
+        <mat-badge [matBadge]="cartItems.length" matBadgePosition="below" matBadgeColor="accent"></mat-badge>
+      </div>
+    </div>
+    <div class="search-bar" [class.open]="isSearchBarOpen" #searchBar>
+      <div class="search-bar-content">
+        <input type="text" placeholder="Search" />
+        <button class="search-icon" (click)="searchMethod()">
+          <img class="searchbuttonpic" src="assets/Pictures/search.png" alt="Search" />
+        </button>
+        
+        <button class="close-search" (click)="toggleSearchBar()">Close</button>
+      </div>
+    </div>
+  </header>
+  
+</div>

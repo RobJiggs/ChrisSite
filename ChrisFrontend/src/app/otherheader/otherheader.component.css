@@ -1,0 +1,151 @@
+
+
+
+
+
+  /* Header styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    color: #F5F5F5;
+   
+  }
+  
+  .left-section {
+    display: flex;
+  }
+  
+  .collection,
+  .category-men,
+  .category-women,
+  .sales {
+    margin-right: 15px;
+  }
+  
+  .collection a,
+  .category-men a,
+  .category-women a,
+  .sales a {
+    text-decoration: none;
+    color: #F5F5F5;
+  }
+  
+  .logobox {
+    margin: 0 10px; /* Add left margin to move the logo slightly to the left */
+  }
+  
+  .logo {
+    width: 150px;
+    height: 100px;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout-button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    color: #7a7a7a;
+  }
+  
+  .category-account a {
+    text-decoration: none;
+    color: #F5F5F5;
+  }
+  
+  .searchpic,
+  .cartpic {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .search-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search-bar.open {
+    display: flex;
+  }
+  
+  .search-bar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .close-search {
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    background: none;
+    color: #e6b333;
+  }
+  
+  .searchbuttonpic {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .mat-badge-content {
+    font-size: 20px;
+    font-weight: 900;
+    padding: 3px 6px;
+    min-width: 18px;
+    min-height: 18px;
+    line-height: 1;
+    box-sizing: border-box;
+    position: fixed;
+    top: 35px;
+    right: 0px;
+    background-color: #FFB41F; /* Set the background color */
+    color: #000000; /* Set the text color */
+    border-radius: 50%;
+  }
+
+  .collection a,
+  .category-men a,
+  .category-women a,
+  .sales a {
+    text-decoration: none;
+    color: #F5F5F5;
+    transition: color 0.3s;
+  }
+  
+  .collection a:hover,
+  .category-men a:hover,
+  .category-women a:hover,
+  .sales a:hover {
+    color: #e6b333; /* Hover color change */
+  }
+  
+  .category-account a {
+    text-decoration: none;
+    color: #F5F5F5;
+    transition: color 0.3s;
+  }
+  
+  .category-account a:hover {
+    color: #e6b333; /* Hover color change */
+  }
+
+
+  

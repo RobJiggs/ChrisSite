@@ -1,0 +1,7 @@
+<ng-container *ngIf="!shouldHideHeader()">
+  <app-header></app-header>
+</ng-container>
+<ng-container *ngIf="shouldHideHeader() && currentRoute !== '/search'">
+  <app-otherheader></app-otherheader>
+</ng-container>
+<router-outlet></router-outlet>

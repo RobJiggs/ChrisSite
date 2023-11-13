@@ -1,0 +1,52 @@
+<html><head><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"></head><body><div outsideclick="" (outsideclick)="closeMenus()">
+  <header>
+    <nav class="navbar">
+      <div class="header">
+        <div class="left-section">
+          <div class="collection">Collections</div>
+          <div class="category">
+            <a [routerlink]="'/mens'">Men</a>
+          </div>
+          <div class="category">
+            <a [routerlink]="'/womens'">Women</a>
+          </div>
+        </div>
+        <div class="logobox">
+          <a href="/">
+            <img class="logo" src="assets/Pictures/Logo.png" alt="Logo">
+          </a>
+        </div>
+        <div class="right-section">
+          <a [routerlink]="'/account'" class="account">Account</a>
+          <div class="top-icons">
+            <div class="search-icon" (click)="toggleSearchBar()">
+              <img class="searchpic" src="assets\Pictures\search.png" alt="Search">
+            </div>
+            <div class="cart-icon" #cartmenubutton="">
+              <a [routerlink]="'/cart'">
+                <img class="cartpic" src="assets/Pictures/Bag.png" alt="Cart">
+              </a>
+            </div>
+            <button class="logout-button" *ngif="isLoggedIn" (click)="logout()">
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="search-bar" [class.open]="isSearchBarOpen" #searchbar="">
+      <div class="search-bar-content">
+        <input type="text" placeholder="Search">
+        <button class="search-icon" (click)="searchMethod()">🔍</button>
+        <button class="close-search" (click)="toggleSearchBar()">Close</button>
+      </div>
+    </div>
+  </header>
+</div>
+</body></html>

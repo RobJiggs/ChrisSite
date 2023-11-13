@@ -1,0 +1,144 @@
+
+
+<div class="big-div">
+  <button
+  class="login-button"
+  (click)="toggleLogin()"
+  [ngClass]="{ 'active-button': loginMode, 'inactive-button': !loginMode }"
+>
+  Login
+</button>
+<button
+  class="create-account"
+  (click)="toggleCreateAccount()"
+  [ngClass]="{
+    'active-button': createAccountMode,
+    'inactive-button': !createAccountMode
+  }"
+>
+  Create Account
+</button>
+  <h2>Your Account</h2>
+  <div *ngIf="loginMode">
+    <h3>Login by User</h3>
+    <div>
+      <label for="username" class="colored-label">Username:</label>
+      <input
+        class="input-field"
+        type="text"
+        id="username"
+        [(ngModel)]="username"
+        (input)="clearEmailAndPassword()"
+      />
+    </div>
+    <div>
+      <label for="password" class="colored-label">Password:</label>
+      <input
+        class="input-field"
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+        (input)="clearEmailAndPassword()"
+      />
+    </div>
+    <p>OR</p>
+    <h3>Login by Email</h3>
+    <div>
+      <label for="email" class="colored-label">Email:</label>
+      <input
+        class="input-field"
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        (input)="clearUsernameAndPassword()"
+      />
+    </div>
+    <div>
+      <label for="password" class="colored-label">Password:</label>
+      <input
+        class="input-field"
+        type="password"
+        id="emailpassword"
+        [(ngModel)]="emailpassword"
+        (input)="clearUsernameAndPassword()"
+      />
+    </div>
+    
+    <div *ngIf="loginMode">
+        <button class="login-submit-button" (click)="submitLoginForm()">
+          Submit
+        </button>
+        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <div class="ack" *ngIf="ack">{{ ack }}</div>
+      </div>
+  </div>
+  <div *ngIf="createAccountMode">
+    <div>
+      <label for="username" class="colored-label">UserName:</label>
+      <input
+        class="input-field"
+        type="text"
+        id="username"
+        [(ngModel)]="username"
+      />
+    </div>
+    <div>
+      <label for="firstName" class="colored-label">First Name:</label>
+      <input
+        class="input-field"
+        type="text"
+        id="firstName"
+        [(ngModel)]="firstName"
+      />
+    </div>
+    <div>
+      <label for="lastName" class="colored-label">Last Name:</label>
+      <input
+        class="input-field"
+        type="text"
+        id="lastName"
+        [(ngModel)]="lastName"
+      />
+    </div>
+    <div>
+      <label for="email" class="colored-label">Email:</label>
+      <input class="input-field" type="email" id="email" [(ngModel)]="email" />
+    </div>
+    <div>
+      <label for="password" class="colored-label">Password:</label>
+      <input
+        class="input-field"
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+      />
+    </div>
+    <div>
+      <label for="confirmPassword" class="colored-label"
+        >Confirm Password:</label
+      >
+      <input
+        class="input-field"
+        type="password"
+        id="confirmPassword"
+        [(ngModel)]="confirmPassword"
+      />
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="ack" *ngIf="ack">{{ ack }}</div>
+   
+
+    <div *ngIf="createAccountMode">
+      <button
+        class="create-account-submit-button"
+        (click)="registerSubmitForm()"
+      >
+        Submit
+      </button>
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <div class="ack" *ngIf="ack">{{ ack }}</div>
+    </div>
+  </div>
+</div>
+ 
