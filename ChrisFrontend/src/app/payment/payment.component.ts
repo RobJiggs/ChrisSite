@@ -103,7 +103,7 @@ export class PaymentComponent {
 private initConfig(): void {
   this.payPalConfig = {
     currency: 'USD',
-    clientId: 'Ab7tGZYtKJhQi6MOcuBy2ZNcC2iVi-P5fmzBrjLb7SWG0nj_gjiDMz79WpCUCNqQxr5jHe72NteI8e6J',
+    clientId: 'hidden for safety',
     createOrderOnClient: (data: any) => <ICreateOrderRequest>{
       intent: 'CAPTURE',
       purchase_units: [
