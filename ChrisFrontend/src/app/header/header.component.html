@@ -1,4 +1,5 @@
 <div outsideClick (outsideClick)="closeMenus()">
+  
   <header>
     <nav class="navbar">
       <div class="navbar-left" (click)="toggleMenu()">
@@ -37,12 +38,26 @@
     </nav>
     <div class="search-bar" [class.open]="isSearchBarOpen" #searchBar>
       <div class="search-bar-content">
-        <input type="text" placeholder="Search" />
+        <input [(ngModel)]="searchContent" type="text" placeholder="Search" (input)="searchSuggestionMethod()" />
         <button class="search-icon" (click)="searchMethod()">
           <img class="searchbuttonpic" src="assets/Pictures/search.png" alt="Search" />
         </button>
         
         <button class="close-search" (click)="toggleSearchBar()">Close</button>
+      </div>
+      <div class="search-suggestions" *ngIf="searchSuggestions.length > 0">
+        <div class="suggestion-container">
+          <div *ngFor="let suggestion of searchSuggestions" class="suggestion-item">
+            <!-- Each suggestion item details go here -->
+            <div class="suggestion-details" (click)="navigateToItemDetail(suggestion.itemName)">
+              <img class="suggestionitem-image" [src]="sanitizeImageUrl(suggestion.image)" />
+              <div class="suggestion-details-text">
+                <p class="suggestionItemName">{{ getDisplayItemName(suggestion) }}</p>
+                <p class="suggestionprice">${{ suggestion.price }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

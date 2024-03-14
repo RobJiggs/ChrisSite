@@ -85,6 +85,12 @@ public Items ItemsForCart(String name,String color,String sex,String size){
 	return itemRepo.findItemByAttributes(name, color, sex, size);
 	
 }
+public List<Items> ItemSearchSuggestions(String suggestion){
+	
+	
+	return itemRepo.findItemsBySearchTerm(suggestion);
+	
+}
 
 public List<String> ItemSizes(String name,String color,String sex){
 	

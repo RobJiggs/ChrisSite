@@ -554,6 +554,15 @@ public class UserController {
 	    return totalPrice;
 	  }
 	
+	@GetMapping("/items/search/{suggestion}")
+	public List<Items> getSearchsuggestions(@PathVariable("suggestion") String suggestion){
+		
+		List<Items> items= new ArrayList<Items>(); 
+		items= itemService.ItemSearchSuggestions(suggestion);
+		System.out.println(suggestion);
+		return items;
+		
+	}
 	
 	@GetMapping("/items/orders/info/{orderitemid}")
 	public Items getOItemInfo(@PathVariable("orderitemid")long orderitemid) {

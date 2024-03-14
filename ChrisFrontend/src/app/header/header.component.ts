@@ -15,6 +15,8 @@ import { OutsideClickDirective } from '../outside-click.directive';
 import { SearchService } from '../search.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CartBadgeService } from '../cart-badge.service';
+import { SizeSelectionService } from '../size-selection.service';
+import { SuggestionService } from '../suggestion.service';
 
 
 
@@ -29,7 +31,7 @@ import { CartBadgeService } from '../cart-badge.service';
 
 export class HeaderComponent {
   showCartMenu=false;
-  constructor(private cartBadgeService: CartBadgeService,private renderer: Renderer2,private search:SearchService,private router: Router, private cartMenuToggleService:CartMenuToggleService, private signupService:ItemsService,private authGuard:AuthGuard,private cartService:CartServiceService,private cartitemService:CartItemService,private sanitizer: DomSanitizer,private ipservice:IpAddressService ,private cartMenuService: CartmenuService) { }
+  constructor(private suggestion:SuggestionService, private sizeSelectionService: SizeSelectionService,private cartBadgeService: CartBadgeService,private renderer: Renderer2,private search:SearchService,private router: Router, private cartMenuToggleService:CartMenuToggleService, private signupService:ItemsService,private authGuard:AuthGuard,private cartService:CartServiceService,private cartitemService:CartItemService,private sanitizer: DomSanitizer,private ipservice:IpAddressService ,private cartMenuService: CartmenuService) { }
   
   isMenuOpen = false;
   isSearchBarOpen= false;
@@ -37,6 +39,7 @@ export class HeaderComponent {
   isLoggedIn=false;
   item: Items= new Items();
   items: any;
+  searchSuggestions:Items[]=[]
   cart:Cart=new Cart();
   carts:any;
   cartItem:CartItem= new CartItem();
@@ -102,7 +105,9 @@ export class HeaderComponent {
       this.cartItemsCount = count;
     });
     
-
+    this.sizeSelectionService.sizeSelected.subscribe(() => {
+        this.onSizeSelected();
+      });
 
 
   }
@@ -141,7 +146,11 @@ export class HeaderComponent {
 
 
 }
+onSizeSelected(){
 
+this.toggleCartMenu()
+
+}
 cartTotal():number{
 
   let total=0;
@@ -195,6 +204,8 @@ retrieveCartItems(): void {
   }
 }
 
+
+
 searchMethod(){
   const searchBarContent = (document.querySelector('.search-bar input') as HTMLInputElement).value;
 
@@ -216,6 +227,39 @@ searchMethod(){
 
 
 }
+
+searchSuggestionMethod(){
+    const searchBarContent = (document.querySelector('.search-bar input') as HTMLInputElement).value;
+    if (!searchBarContent) {
+      this.searchSuggestions = [];
+      return;
+    }
+    
+    this.suggestion.getSearchSuggestions(searchBarContent).subscribe(
+        (suggestions: Items[]) => {
+          this.searchSuggestions = suggestions;
+        },
+        (error: any) => {
+          console.log(error);
+        }
+        );
+    }
+    getDisplayItemName(item: Items): string {
+        if (item.sex === 'Male') {
+          return "Men's " + item.color+" "+ item.itemName;
+        }
+        if(item.sex==='Female')
+          return "Women's " + item.color+" "+item.itemName;
+        return item.itemName;
+      }
+      
+      navigateToItemDetail(itemName: string) {
+        // Use the Angular Router to navigate to the item detail page
+        this.searchSuggestions = [];
+        this.searchContent=''
+        this.toggleSearchBar()
+        this.router.navigate(['items', itemName]);
+      }
 
 
 getItemsForCartItems(): void {

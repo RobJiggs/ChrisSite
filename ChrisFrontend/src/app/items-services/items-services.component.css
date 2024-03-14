@@ -1,11 +1,9 @@
-.ItemImage{
-    width: 200px;
-    height: 200px;
-
-
-
-
+.ItemImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 55% 50%;
 }
+
 
 .ImageGrid {
     display: grid;

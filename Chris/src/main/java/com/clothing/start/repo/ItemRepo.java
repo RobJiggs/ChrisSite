@@ -71,4 +71,7 @@ public interface ItemRepo extends JpaRepository<Items, Long>{
 	 	@Query("SELECT i FROM Items i WHERE i.itemName = :itemName AND i.color = :color AND i.sex = :sex AND i.size = :size")
 	 	Items findItemByAttributes(@Param("itemName") String itemName, @Param("color") String color, @Param("sex") String sex, @Param("size") String size);
 
+	 	@Query("SELECT i FROM Items i WHERE i.itemName LIKE %:searchTerm%")
+	    List<Items> findItemsBySearchTerm(@Param("searchTerm") String searchTerm);
+	 	
 }

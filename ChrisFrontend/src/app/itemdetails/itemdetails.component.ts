@@ -7,6 +7,7 @@ import { HttpResponse } from '@angular/common/http';
 import { CartItemService } from '../cart-item-service.service';
 import { Cart } from '../cart';
 import { CartServiceService } from '../cart-service.service';
+import { ItemdetailService } from '../itemdetail.service';
 @Component({
   selector: 'app-itemdetails',
   templateUrl: './itemdetails.component.html',
@@ -15,6 +16,7 @@ import { CartServiceService } from '../cart-service.service';
 export class ItemdetailsComponent {
   itemName=""
   itemInfoArray: ItemSizesAndColors[] = [];
+  selectedItem:Items=new Items()
   item:Items=new Items()
   cart:Cart=new Cart()
   quantityOptions: number[] = Array.from({ length: 30 }, (_, i) => i + 1); // Creates an array from 1 to 30
@@ -35,13 +37,14 @@ export class ItemdetailsComponent {
           
   
 
-  constructor(private router: Router,private route: ActivatedRoute, private itemservice:ItemsService,private cartItemService:CartItemService,private cartService:CartServiceService) {}
+  constructor(private itemDetailsService: ItemdetailService,private router: Router,private route: ActivatedRoute, private itemservice:ItemsService,private cartItemService:CartItemService,private cartService:CartServiceService) {}
   
   ngOnInit() {
     // Access the route parameter 'name'
   
     
     this.route.params.subscribe(params => {
+      
       this.itemName = params['name'];
       
       // Now you can use the 'itemName' in your component logic
@@ -121,6 +124,14 @@ export class ItemdetailsComponent {
         } else {
           console.error('Invalid data format: expected an array.');
         }
+        this.itemDetailsService.selectedItem$.subscribe((selectedItem) => {
+          // Update the component properties based on the selected item
+          this.selectedColor = selectedItem.color;
+          
+          this.selectedSex = selectedItem.sex;
+          this.changeItemPrice(this.itemName,selectedItem.color,selectedItem.sex,selectedItem.size)
+        });
+
       });
       
      

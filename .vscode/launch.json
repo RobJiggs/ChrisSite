@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ChrisApplication<Chris>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.clothing.start.ChrisApplication",
+            "projectName": "Chris",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

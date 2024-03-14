@@ -11,6 +11,8 @@ import { CartmenuService } from '../cartmenu.service';
 import { HeaderComponent } from '../header/header.component';
 import { CartItem } from '../cart-item';
 import { CartBadgeService } from '../cart-badge.service';
+import { SizeSelectionService } from '../size-selection.service';
+import { ItemdetailService } from '../itemdetail.service';
 @Component({
   selector: 'app-items-services',
   templateUrl: './items-services.component.html',
@@ -35,7 +37,7 @@ cartItem:CartItem= new CartItem();
 cartItems: CartItem[] = [];
 cartItemsCount=0;
 
-  constructor(private cartBadgeService: CartBadgeService,private signupService:ItemsService,private router:Router,private sanitizer: DomSanitizer,private ipAddressService: IpAddressService,private cartitemService:CartItemService,private cartService: CartServiceService,private cartMenuService: CartmenuService) { }
+  constructor(private itemDetailsService: ItemdetailService,private sizeSelectionService: SizeSelectionService,private cartBadgeService: CartBadgeService,private signupService:ItemsService,private router:Router,private sanitizer: DomSanitizer,private ipAddressService: IpAddressService,private cartitemService:CartItemService,private cartService: CartServiceService,private cartMenuService: CartmenuService) { }
   ngOnInit(): void {
     this.searchItems(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true);
    
@@ -83,6 +85,11 @@ cartItemsCount=0;
       
      this.cartTotal();
 
+  }
+  onSelectSize() {
+    // Your logic for size selection in the itemservices component
+    console.log('Size selected in itemservices component');
+    this.sizeSelectionService.triggerSizeSelected();
   }
   getallItems(){
     this.signupService.getItemList().subscribe(data=>{this.items=data;
@@ -189,7 +196,11 @@ getItemSizes(name: string, color: string, sex:string) {
 
 //triggerToggleCartMenu(): void {
   //this.cartMenuService.toggleCartMenu();
+openCart():void{
 
+
+
+}
 createCartItem(name: string, color: string,sex:string, size: string) {
   const itemRequest = {
     name: name,
@@ -265,9 +276,13 @@ cartTotal():void {
 
 }
 
-navigateToItemDetail(itemName: string) {
+navigateToItemDetail(itemName: string,item:Items) {
   // Use the Angular Router to navigate to the item detail page
+  console.log("this is the right item", item,item.color,item.sex)
+  this.itemDetailsService.setSelectedItem({item})
   this.router.navigate(['items', itemName]);
+  // Emit the selected item to subscribers
+  
 }
 
 
